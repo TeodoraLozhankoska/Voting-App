@@ -12,14 +12,13 @@
         android:id="@+id/tekstVlez"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="Log in to your account.
-
-                                                                                                           If you don't have one Sign In."
-                      android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:text="Log in to your account!"
+        android:textStyle="bold"
+        android:textSize="20dp"
         android:gravity="center"/>
 
     <TextView
@@ -27,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/tekstVlez"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="20dp"
@@ -40,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="85dp"
         app:layout_constraintTop_toBottomOf="@id/tekstVlez"
 
         app:layout_constraintLeft_toRightOf="@+id/email"
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/email"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="20dp"
@@ -61,8 +61,10 @@
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
         android:layout_marginLeft="85dp"
         android:layout_marginRight="10dp"
+
         app:layout_constraintTop_toBottomOf="@id/poleEmail"
         app:layout_constraintLeft_toRightOf="@+id/password"
         />
@@ -71,105 +73,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/polePassword"
+        android:layout_marginTop="150dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Login"
+        android:text="Log in"
         />
-
-
-    <TextView
-        android:id="@+id/ime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/login"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:textStyle="bold"
-        android:layout_marginLeft="20dp"
-        android:text="Име:"
-        />
-    <EditText
-        android:id="@+id/poleIme"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintTop_toBottomOf="@id/login"
-        app:layout_constraintLeft_toRightOf="@+id/ime"/>
-
-    <TextView
-        android:id="@+id/prezime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/ime"
-        android:text="Презиме:" />
-
-    <EditText
-        android:id="@+id/polePrezime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintTop_toBottomOf="@id/ime"
-        app:layout_constraintLeft_toRightOf="@+id/prezime"/>
-
-    <TextView
-        android:id="@+id/mail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        app:layout_constraintTop_toBottomOf="@id/prezime"
-        android:textStyle="bold"
-        android:text="Email:" />
-
-    <EditText
-        android:id="@+id/poleMail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintTop_toBottomOf="@id/prezime"
-        app:layout_constraintLeft_toRightOf="@+id/mail"/>
-
-
-    <TextView
-        android:id="@+id/pass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        app:layout_constraintTop_toBottomOf="@id/mail"
-        android:textStyle="bold"
-        android:text="Password:" />
-
-    <EditText
-        android:id="@+id/polePass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:layout_marginLeft="85dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintTop_toBottomOf="@id/poleMail"
-        app:layout_constraintLeft_toRightOf="@+id/pass"/>
-
-
     <Button
-        android:id="@+id/login2"
+        android:id="@+id/gotoRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/polePass"
+        app:layout_constraintTop_toBottomOf="@id/login"
+        android:layout_marginTop="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Sign in"
+        android:onClick="toRegistation"
+        android:text="Register here"
         />
+
     <!--<ImageView
         android:id="@+id/vote"
         android:layout_width="wrap_content"

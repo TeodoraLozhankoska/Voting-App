@@ -7,9 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
-import android.os.Bundle;
 
 public class main extends AppCompatActivity {
 
@@ -17,32 +15,70 @@ public class main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_main);
-        Button button= (Button)findViewById(R.id.login);
-        button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                EditText emailOb = (EditText) findViewById(R.id.poleEmail);
-                String emailText = emailOb.getText().toString();
 
-                EditText passOb= (EditText) findViewById(R.id.polePassword);
-                String passText= passOb.getText().toString();
+        DatabaseHandler DB;
+        DB = new DatabaseHandler(this);
+        EditText emailOb = (EditText) findViewById(R.id.poleEmail);
+        EditText passOb = (EditText) findViewById(R.id.polePassword);
 
-                if (emailText.matches("")||passText.matches("")) {
-                    Toast.makeText(main.this, "You did not enter your complete information", Toast.LENGTH_SHORT).show();
-                    return;
-                }else {
-                    Intent intent = new Intent(view.getContext(), administrator.class);
-                    startActivity(intent);
+            Button button = (Button) findViewById(R.id.login);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    String emailText = emailOb.getText().toString().trim();
+                    String passText = passOb.getText().toString().trim();
+
+                    if (emailText.matches("") || passText.matches("")) {
+                        Toast.makeText(main.this, "Please fill in all the fields", Toast.LENGTH_SHORT).show();
+                        return;
+
+                    } else if (emailText.matches("admin")) {
+                        emailOb.setText("");
+                        passOb.setText("");
+                        if (passText.matches("1234")) {
+                            Intent intent = new Intent(view.getContext(), administrator.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(main.this, "Incorrect email or password", Toast.LENGTH_SHORT).show();
+                        }
+
+                    } else {
+                        Boolean checkemail = DB.checkEmail(emailText);
+                        if (checkemail == false) {
+                            Toast.makeText(main.this, "You don't have an account.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Boolean checkemail_password = DB.checkEmailPassword(emailText, passText);
+                            if (checkemail_password == false) {
+                                Toast.makeText(main.this, "Incorrect email or password", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Intent intent = new Intent(getApplicationContext(), user.class);
+                                startActivity(intent);
+                            }
+                        }
+                    }
                 }
-            }
-        });
+            });
+        }
 
 
-        DatabaseHandler databaseHandler=new DatabaseHandler(this);
-    }
 
     @Override
     public <T extends View> T findViewById(int id) {
         return super.findViewById(id);
     }
+
+
+
+    public void toRegistation(View view) {
+        Button button= (Button) findViewById(R.id.gotoRegister);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent newActivityIntent = new Intent(main.this, Registration.class);
+                startActivity(newActivityIntent);
+            }
+        });
     }
+}
+

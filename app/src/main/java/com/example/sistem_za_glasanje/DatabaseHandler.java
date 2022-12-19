@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
+import android.database.Cursor;
 
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -39,9 +40,9 @@ SQLiteDatabase database;
      db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
      onCreate(db);
    }
-   public void register(String name, String surname, String username, String email, String password) {
-    SQLiteDatabase sqldatabase=this.getWritableDatabase();
-    ContentValues value= new ContentValues();
+    /* public boolean Register(String name, String surname, String username, String email, String password) {
+        SQLiteDatabase sqldatabase=this.getWritableDatabase();
+        ContentValues value= new ContentValues();
 
         value.put(COLUMN_NAME,name);
         value.put(COLUMN_SURNAME,surname);
@@ -50,7 +51,49 @@ SQLiteDatabase database;
 
         sqldatabase.insert(TABLE_NAME,null,value);
         sqldatabase.close();
-}
+    } */
+    public boolean RegisterUser(userM usermodel){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues value=new ContentValues();
+
+        value.put(COLUMN_NAME, usermodel.getName());
+        value.put(COLUMN_SURNAME,usermodel.getSurname());
+        value.put(COLUMN_EMAIL,usermodel.getEmail());
+        value.put(COLUMN_PASSWORD,usermodel.getPassword());
+
+        long insert=db.insert(TABLE_NAME,null,value);
+
+        if(insert==-1){
+            return false;
+        }else{
+            return true;
+        }
+        //db.close();
+    }
+    public Boolean checkEmail(String email){
+        SQLiteDatabase info=this.getWritableDatabase();
+        Cursor cursor=info.rawQuery("Select * from "+TABLE_NAME+" where "+COLUMN_EMAIL+" =? ", new String[]{email});
+
+        if(cursor.getCount()>0){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+    public Boolean checkEmailPassword(String email, String password){
+        SQLiteDatabase info=this.getWritableDatabase();
+        Cursor cursor=info.rawQuery("Select * from "+TABLE_NAME+" where "+COLUMN_EMAIL+" =? and "+COLUMN_PASSWORD+" =? ", new String[]{email, password});
+
+        if(cursor.getCount()>0){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+
 }
 
 
